@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newtv.pulldatatask.mapper.primary.PrimaryBatchMapper" >
+    <resultMap id="BaseResultMap" type="com.newtv.pulldatatask.entity.primary.PrimaryBatch" >
+        <id column="BATCH_ID" property="batchId" jdbcType="BIGINT" />
+        <result column="BATCH_CODE" property="batchCode" jdbcType="VARCHAR" />
+        <result column="RES_TYPE_CODE" property="resTypeCode" jdbcType="VARCHAR" />
+        <result column="START_REGION_CODE" property="startRegionCode" jdbcType="VARCHAR"/>
+        <result column="END_REGION_CODE" property="endRegionCode" jdbcType="VARCHAR" />
+        <result column="START_CODE" property="startCode" jdbcType="VARCHAR" />
+        <result column="COUNT" property="count" jdbcType="BIGINT" />
+        <result column="BATCH_STATUS" property="batchStatus" jdbcType="INTEGER" />
+        <result column="VALID_DATE" property="validDate" jdbcType="DATE" />
+        <result column="EXPIR_DATE" property="expirDate" jdbcType="DATE" />
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+        <result column="OPERATOR_ID" property="operatorId" jdbcType="BIGINT" />
+        <result column="BIND_STATUS" property="bindStatus" jdbcType="INTEGER" />
+        <result column="RES_FACTORY_ID" property="resFactoryId" jdbcType="BIGINT" />
+        <result column="BATCH_TYPE" property="batchType" jdbcType="INTEGER" />
+    </resultMap>
+
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+        SELECT
+        a.*,to_char(a.CREATE_DATE,'yyyy-mm-dd HH24:mi:ss') AS "createDateStr",b.RES_FACTORY_NAME AS "resFactoryName"
+        FROM tr.tr_batch a LEFT JOIN tr.tr_res_factory b ON a.RES_FACTORY_ID=b.RES_FACTORY_ID
+        where TO_CHAR(a.CREATE_DATE,'YYYY-MM-DD') &lt;&gt; TO_CHAR(SYSDATE,'YYYY-MM-DD')
+        OR a.CREATE_DATE IS NULL
+        order by a.BATCH_ID asc
+    </select>
+
+    <select id="getYesterdayList" resultMap="BaseResultMap"  >
+        SELECT
+        a.*,to_char(a.CREATE_DATE,'yyyy-mm-dd HH24:mi:ss') AS "createDateStr",b.RES_FACTORY_NAME AS "resFactoryName"
+        FROM tr.tr_batch a LEFT JOIN tr.tr_res_factory b ON a.RES_FACTORY_ID=b.RES_FACTORY_ID
+        where TO_CHAR(a.CREATE_DATE,'YYYY-MM-DD')=TO_CHAR(SYSDATE-1,'YYYY-MM-DD')
+        order by a.BATCH_ID asc
+    </select>
+
+    <select id="getListById" resultMap="BaseResultMap"  >
+        SELECT
+        a.*,to_char(a.CREATE_DATE,'yyyy-mm-dd HH24:mi:ss') AS "createDateStr",b.RES_FACTORY_NAME AS "resFactoryName"
+        FROM tr.tr_batch a LEFT JOIN tr.tr_res_factory b ON a.RES_FACTORY_ID=b.RES_FACTORY_ID
+        where a.BATCH_ID &gt; #{batchId}
+        order by a.BATCH_ID asc
+    </select>
+
+</mapper>

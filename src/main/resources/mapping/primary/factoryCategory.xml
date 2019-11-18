@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newtv.pulldatatask.mapper.primary.FactoryCategoryMapper" >
+    <resultMap id="BaseResultMap" type="com.newtv.pulldatatask.entity.primary.FactoryCategory" >
+        <id column="FC_ID" property="fcId" jdbcType="BIGINT" />
+        <result column="FC_CODE" property="fcCode" jdbcType="VARCHAR" />
+        <result column="FC_NAME" property="fcName" jdbcType="VARCHAR" />
+        <result column="FC_DESC" property="fcDesc" jdbcType="VARCHAR"/>
+        <result column="CATE_MAIN_KIND" property="cateMainKind" jdbcType="VARCHAR" />
+        <result column="CATE_SUB_KIND" property="cateSubKind" jdbcType="VARCHAR" />
+        <result column="RES_TYPE" property="resType" jdbcType="INTEGER" />
+        <result column="PROVIDER" property="provider" jdbcType="VARCHAR" />
+        <result column="COUNTRY" property="country" jdbcType="VARCHAR" />
+        <result column="OPERATOR_ID" property="operatorId" jdbcType="BIGINT" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
+    </resultMap>
+
+
+    <select id="getFactoryCategory" resultMap="BaseResultMap"  >
+        SELECT
+        *
+        FROM tr.tr_factory_category a WHERE a.FC_CODE = #{fcCode}
+    </select>
+
+</mapper>

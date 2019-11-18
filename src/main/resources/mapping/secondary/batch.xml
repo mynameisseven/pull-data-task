@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newtv.pulldatatask.mapper.secondary.SecondBatchMapper" >
+    <resultMap id="BaseResultMap" type="com.newtv.pulldatatask.entity.secondary.SecondBatch" >
+        <id column="id" property="batchId" jdbcType="BIGINT" />
+        <result column="code" property="batchCode" jdbcType="VARCHAR" />
+        <result column="resTypeCode" property="resTypeCode" jdbcType="VARCHAR" />
+        <result column="startRegionCode" property="startRegionCode" jdbcType="VARCHAR"/>
+        <result column="endRegionCode" property="endRegionCode" jdbcType="VARCHAR" />
+        <result column="startCode" property="startCode" jdbcType="VARCHAR" />
+        <result column="total" property="total" jdbcType="BIGINT" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="validDate" property="validDate" jdbcType="DATE" />
+        <result column="expirDate" property="expirDate" jdbcType="DATE" />
+        <result column="updateDate" property="updateDate" jdbcType="DATE" />
+        <result column="createDate" property="createDate" jdbcType="DATE" />
+        <result column="operatorId" property="operatorId" jdbcType="BIGINT" />
+        <result column="bindStatus" property="bindStatus" jdbcType="INTEGER" />
+        <result column="resFactoryId" property="resFactoryId" jdbcType="BIGINT" />
+        <result column="resFactoryName" property="resFactoryName" jdbcType="VARCHAR" />
+        <result column="batchType" property="batchType" jdbcType="INTEGER" />
+        <result column="categoryName" property="categoryName" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <insert id="insert" parameterType="com.newtv.pulldatatask.entity.secondary.SecondBatch" >
+        INSERT INTO
+        batch
+        (id,code,resTypeCode,startRegionCode,endRegionCode,startCode,total,status,
+        validDate,expirDate,updateDate,createDate,operatorId,bindStatus,resFactoryId,
+        resFactoryName,type,categoryName)
+        VALUES
+        (#{id}, #{code}, #{resTypeCode}, #{startRegionCode}, #{endRegionCode}, #{startCode},
+        #{total}, #{status}, #{validDate}, #{expirDate}, #{updateDate}, #{createDate},
+        #{operatorId}, #{bindStatus}, #{resFactoryId}, #{resFactoryName}, #{batchType}, #{categoryName})
+    </insert>
+
+</mapper>

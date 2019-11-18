@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newtv.pulldatatask.mapper.primary.CategoryMapper" >
+    <resultMap id="BaseResultMap" type="com.newtv.pulldatatask.entity.primary.Category" >
+        <id column="CATE_ID" property="cateId" jdbcType="BIGINT" />
+        <result column="CATE_CODE" property="cateCode" jdbcType="VARCHAR" />
+        <result column="CATE_NAME" property="cateName" jdbcType="VARCHAR" />
+        <result column="CATE_DESC" property="cateDesc" jdbcType="VARCHAR"/>
+        <result column="REC_ORG_ID" property="recOrgId" jdbcType="BIGINT" />
+        <result column="CATE_TYPE" property="cateType" jdbcType="VARCHAR" />
+        <result column="CATE_MAIN_KIND" property="cateMainKind" jdbcType="VARCHAR" />
+        <result column="CATE_SUB_KIND" property="cateSubKind" jdbcType="VARCHAR" />
+        <result column="CATE_STATUS" property="cateStatus" jdbcType="INTEGER" />
+        <result column="REP_TYPE" property="repType" jdbcType="INTEGER" />
+        <result column="PROVIDER" property="provider" jdbcType="VARCHAR" />
+        <result column="UNIT_PRICE" property="unitPrice" jdbcType="BIGINT" />
+        <result column="IS_BIND" property="isBind" jdbcType="INTEGER" />
+        <result column="SN_LENGTH" property="snLength" jdbcType="BIGINT" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    </resultMap>
+
+
+    <select id="getCategory" resultMap="BaseResultMap"  >
+        SELECT
+        *
+        FROM tr.tr_category a WHERE a.CATE_CODE = #{cateCode} AND a.PROVIDER = #{provider}
+    </select>
+
+</mapper>

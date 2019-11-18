@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newtv.pulldatatask.mapper.primary.FactoryMapper" >
+    <resultMap id="BaseResultMap" type="com.newtv.pulldatatask.entity.primary.Factory" >
+        <id column="RES_FACTORY_ID" property="resFactoryId" jdbcType="BIGINT" />
+        <result column="RES_FACTORY_CODE" property="resFactoryCode" jdbcType="VARCHAR" />
+        <result column="RES_FACTORY_NAME" property="resFactoryName" jdbcType="VARCHAR" />
+        <result column="RES_TYPE" property="resType" jdbcType="INTEGER"/>
+        <result column="RES_FACTORY_STATUS" property="resFactoryStatus" jdbcType="INTEGER" />
+        <result column="RES_REMARK" property="resRemark" jdbcType="VARCHAR" />
+        <result column="RES_FACTORY_CONTACT" property="resFactoryContact" jdbcType="VARCHAR" />
+        <result column="RES_FACTORY_ADDRESS" property="resFactoryAddress" jdbcType="DATE" />
+        <result column="VALID_DATE" property="validDate" jdbcType="DATE" />
+        <result column="EXPIR_DATE" property="expirDate" jdbcType="DATE" />
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
+        <result column="OPERATOR_ID" property="operatorId" jdbcType="BIGINT" />
+    </resultMap>
+
+    <select id="getFactory" resultMap="BaseResultMap"  >
+        SELECT
+        *
+        FROM tr.tr_res_factory a WHERE a.RES_FACTORY_CODE = #{code} and a.EXPIR_DATE is NULL
+    </select>
+
+</mapper>

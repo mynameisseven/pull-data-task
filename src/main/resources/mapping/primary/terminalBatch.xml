@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newtv.pulldatatask.mapper.primary.PrimaryTerminalBatchMapper" >
+    <resultMap id="BaseResultMap" type="com.newtv.pulldatatask.entity.primary.PrimaryTerminalBatch" >
+        <id column="BATCH_ID" property="batchId" jdbcType="BIGINT" />
+        <result column="MODEL_ID" property="modelId" jdbcType="BIGINT" />
+        <result column="SERVICE_PROVIDER" property="serviceProvider" jdbcType="VARCHAR" />
+        <result column="PROVIDER" property="provider" jdbcType="VARCHAR"/>
+        <result column="MODEL" property="model" jdbcType="VARCHAR" />
+        <result column="BATCH_NO" property="batchNo" jdbcType="VARCHAR" />
+        <result column="START_MAC" property="startMac" jdbcType="VARCHAR" />
+        <result column="END_MAC" property="endMac" jdbcType="VARCHAR" />
+        <result column="AUTH_TYPE" property="authType" jdbcType="INTEGER" />
+        <result column="OPERATIONS_TYPE" property="operationsType" jdbcType="INTEGER" />
+        <result column="DEPOSIT_FLAG" property="depositFlag" jdbcType="INTEGER" />
+        <result column="TERMINAL_SERIAL" property="terminalSerial" jdbcType="VARCHAR" />
+        <result column="USED_EXPIRE_DATE" property="usedExpireDate" jdbcType="DATE" />
+        <result column="STATUS" property="status" jdbcType="BIGINT" />
+        <result column="APP_ID" property="appId" jdbcType="BIGINT" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
+        <result column="EXPIRE_DATE" property="expireDate" jdbcType="DATE" />
+        <result column="OPERATOR_ID" property="operatorId" jdbcType="BIGINT" />
+        <result column="ORG_ID" property="orgId" jdbcType="BIGINT" />
+        <result column="LOGIN_ORG_ID" property="loginOrgId" jdbcType="BIGINT" />
+        <result column="REC_ORG_ID" property="recOrgId" jdbcType="BIGINT" />
+        <result column="CORP_ORG_ID" property="corpOrgId" jdbcType="BIGINT" />
+        <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+        <result column="BATCH_CODE" property="batchCode" jdbcType="VARCHAR" />
+        <result column="IMPORT_TYPE" property="importType" jdbcType="VARCHAR" />
+        <result column="AUDIT_DATE" property="auditDate" jdbcType="DATE" />
+        <result column="BIND_TYPE" property="bindType" jdbcType="INTEGER" />
+        <result column="START_REGION_CODE" property="startRegionCode" jdbcType="VARCHAR" />
+        <result column="END_REGION_CODE" property="endRegionCode" jdbcType="VARCHAR" />
+        <result column="COUNT" property="count" jdbcType="BIGINT" />
+        <result column="FC" property="fc" jdbcType="VARCHAR" />
+        <result column="IS_FC" property="isFc" jdbcType="INTEGER" />
+    </resultMap>
+
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+        SELECT
+        a.*,to_char(a.CREATE_DATE,'yyyy-mm-dd HH24:mi:ss') AS "createDateStr"
+        FROM cs.cs_terminal_batch a
+        where TO_CHAR(a.CREATE_DATE,'YYYY-MM-DD') &lt;&gt; TO_CHAR(SYSDATE,'YYYY-MM-DD')
+        OR a.CREATE_DATE IS NULL
+        order by a.BATCH_ID asc
+    </select>
+
+    <select id="getYesterdayList" resultMap="BaseResultMap"  >
+        SELECT
+        a.*,to_char(a.CREATE_DATE,'yyyy-mm-dd HH24:mi:ss') AS "createDateStr"
+        FROM cs.cs_terminal_batch a
+        where TO_CHAR(a.CREATE_DATE,'YYYY-MM-DD')=TO_CHAR(SYSDATE-1,'YYYY-MM-DD')
+        order by a.BATCH_ID asc
+    </select>
+
+    <select id="getListById" resultMap="BaseResultMap"  >
+        SELECT
+        a.*,to_char(a.CREATE_DATE,'yyyy-mm-dd HH24:mi:ss') AS "createDateStr"
+        FROM cs.cs_terminal_batch a
+        where a.BATCH_ID &gt; #{batchId}
+        order by a.BATCH_ID asc
+    </select>
+
+</mapper>

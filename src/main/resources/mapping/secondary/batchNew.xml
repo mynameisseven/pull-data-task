@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newtv.pulldatatask.mapper.secondary.SecondBatchNewMapper" >
+    <resultMap id="BaseResultMap" type="com.newtv.pulldatatask.entity.secondary.SecondBatchNew" >
+        <id column="id" property="batchId" jdbcType="BIGINT" />
+        <result column="code" property="batchCode" jdbcType="VARCHAR" />
+        <result column="fcCode" property="fcCode" jdbcType="VARCHAR" />
+        <result column="startRegionCode" property="startRegionCode" jdbcType="VARCHAR"/>
+        <result column="endRegionCode" property="endRegionCode" jdbcType="VARCHAR" />
+        <result column="startCode" property="startCode" jdbcType="VARCHAR" />
+        <result column="total" property="total" jdbcType="BIGINT" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="validDate" property="validDate" jdbcType="DATE" />
+        <result column="expirDate" property="expirDate" jdbcType="DATE" />
+        <result column="updateDate" property="updateDate" jdbcType="DATE" />
+        <result column="createDate" property="createDate" jdbcType="DATE" />
+        <result column="operatorId" property="operatorId" jdbcType="BIGINT" />
+        <result column="bindStatus" property="bindStatus" jdbcType="INTEGER" />
+        <result column="resFactoryCategoryId" property="resFactoryCategoryId" jdbcType="BIGINT" />
+        <result column="resFactoryCategoryName" property="resFactoryCategoryName" jdbcType="VARCHAR" />
+        <result column="batchType" property="batchType" jdbcType="INTEGER" />
+    </resultMap>
+
+
+    <insert id="insert" parameterType="com.newtv.pulldatatask.entity.secondary.SecondBatch" >
+        INSERT INTO
+        batchNew
+        (id,code,fcCode,startRegionCode,endRegionCode,startCode,total,status,
+        validDate,expirDate,updateDate,createDate,operatorId,bindStatus,resFactoryCategoryId,resFactoryCategoryName,type)
+        VALUES
+        (#{id}, #{code}, #{fcCode}, #{startRegionCode}, #{endRegionCode}, #{startCode},
+        #{total}, #{status}, #{validDate}, #{expirDate}, #{updateDate}, #{createDate},
+        #{operatorId}, #{bindStatus}, #{resFactoryCategoryId}, #{resFactoryCategoryName}, #{batchType})
+    </insert>
+
+</mapper>

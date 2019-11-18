@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: pull-data-task
+  jackson:
+    serialization:
+      indent_output: true
+  http:
+    encoding.charset: UTF-8
+    encoding.enable: true
+    encoding.force: true
+  datasource:
+    primary:
+      url: jdbc:oracle:thin:@172.16.5.40:1521:crmdb1
+      username: jszx
+      password: jszx
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+      max-idle: 10
+      max-wait: 10000
+      min-idle: 5
+      initial-size: 5
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 18800
+    secondary:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://172.25.5.59:3306/terminal?useUnicode=true&amp;characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username: bjzoo
+      password: bjzoo!@#
+      max-idle: 10
+      max-wait: 10000
+      min-idle: 5
+      initial-size: 5
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 18800
